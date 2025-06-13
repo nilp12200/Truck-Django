@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-indigo-200">
+
+  <div class="flex min-h-screen items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
+      <div class="flex justify-center mb-6">
+        <img
+          alt="Truck Tracking"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+          class="h-12 w-12"
+        />
+      </div>
+      <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900">
+        Sign in to Truck_tracking
+      </h2>
+
+      <form method="POST" class="mt-8 space-y-6">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <p class="text-red-500 text-sm">{{ form.non_field_errors }}</p>
+        {% endif %}
+
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">
+            Username
+          </label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            value="{{ form.username.value|default:'' }}"
+            required
+            class="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          />
+          {{ form.username.errors }}
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            class="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          />
+          {{ form.password.errors }}
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <a href="#" class="text-indigo-600 hover:text-indigo-500 font-medium">
+            Forgot password?
+          </a>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500 transition duration-200"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
+
+      <p class="mt-6 text-center text-sm text-gray-600">
+        Not a member?
+        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+          Start your free trial
+        </a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

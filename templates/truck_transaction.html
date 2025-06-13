@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Truck Transaction - Lemon Software</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-700 text-white p-4 shadow">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="text-xl font-bold">Lemon Software</div>
+      <ul class="hidden md:flex gap-6">
+        <a href="{% url 'home' %}" class="hover:text-yellow-400">Home</a>
+        <a href="{% url 'plant_master' %}" class="hover:text-yellow-400">Plant Master</a>
+        <a href="{% url 'truck_transaction' %}" class="hover:text-yellow-400">Truck Transaction</a>
+        <a href="{% url 'login' %}" class="hover:text-yellow-400">Logout</a>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Truck Transaction Form -->
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-8">
+    <h1 class="text-2xl font-bold text-center mb-6">Truck Transaction</h1>
+
+    <form action="/submit-truck/" method="POST">
+      <!-- Basic Details -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div>
+          <label class="block font-medium">Truck No</label>
+          <input name="truck_no" class="w-full border rounded px-2 py-1" required />
+        </div>
+        <div>
+          <label class="block font-medium">Transaction Date</label>
+          <input type="date" name="transaction_date" class="w-full border rounded px-2 py-1" required />
+        </div>
+        <div>
+          <label class="block font-medium">City Name</label>
+          <input name="city_name" class="w-full border rounded px-2 py-1" required />
+        </div>
+        <div>
+          <label class="block font-medium">Transporter</label>
+          <input name="transporter" class="w-full border rounded px-2 py-1" required />
+        </div>
+      </div>
+
+      <!-- Loading Details Table -->
+      <h3 class="text-lg font-semibold mt-6 mb-2">Loading Details</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full border text-sm text-left">
+          <thead class="bg-yellow-200">
+            <tr>
+              <th class="border px-2 py-1">Plant</th>
+              <th class="border px-2 py-1">Slip No</th>
+              <th class="border px-2 py-1">Qty</th>
+              <th class="border px-2 py-1">Priority</th>
+              <th class="border px-2 py-1">Remarks</th>
+              <th class="border px-2 py-1">Freight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-2 py-1">
+                <select name="plant_name" class="w-full border rounded px-1">
+                  <option value="">Select</option>
+                  <option value="Plant A">Plant A</option>
+                  <option value="Plant B">Plant B</option>
+                </select>
+              </td>
+              <td class="border px-2 py-1"><input name="loading_slip_no" class="w-full border rounded px-1" /></td>
+              <td class="border px-2 py-1"><input name="qty" class="w-full border rounded px-1" /></td>
+              <td class="border px-2 py-1"><input name="priority" class="w-full border rounded px-1" /></td>
+              <td class="border px-2 py-1"><input name="remarks_loading" class="w-full border rounded px-1" /></td>
+              <td class="border px-2 py-1">
+                <select name="freight" class="w-full border rounded px-1">
+                  <option value="To Pay">To Pay</option>
+                  <option value="Paid">Paid</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Additional Details -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div>
+          <label class="block font-medium">Amount Per Ton</label>
+          <input name="amount_per_ton" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div>
+          <label class="block font-medium">Deliver Point</label>
+          <input name="deliver_point" class="w-full border rounded px-2 py-1" />
+        </div>
+        <div>
+          <label class="block font-medium">Truck Weight (In Ton)</label>
+          <input name="truck_weight" class="w-full border rounded px-2 py-1" />
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label class="block font-medium">Remarks</label>
+        <textarea name="remarks" class="w-full border rounded px-2 py-1" rows="4"></textarea>
+      </div>
+
+      <div class="text-center mt-6">
+        <button
+          type="submit"
+          class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

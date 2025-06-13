@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | Lemon Software</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-yellow-50 to-white min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-800 text-white p-4">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <span class="text-xl font-bold">Lemon Software</span>
+      <div class="space-x-4">
+        <a href="{% url 'home' %}" class="hover:text-yellow-400">Home</a>
+        <a href="{% url 'plant_master' %}" class="hover:text-yellow-400">Plant Master</a>
+        <a href="{% url 'truck_transaction' %}" class="hover:text-yellow-400">Truck Transaction</a>
+        <a href="{% url 'login' %}" class="hover:text-yellow-400">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="text-center py-16 px-4">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Emoji_u1f34b.svg"
+         alt="Lemon Logo" class="w-20 h-20 mx-auto mb-4" />
+    <h1 class="text-4xl font-bold text-yellow-600 mb-4">Welcome to Lemon Software Solution</h1>
+    <p class="text-gray-700 text-lg max-w-2xl mx-auto">
+      We develop modern ERP solutions to streamline your business operations and boost growth.
+    </p>
+  </section>
+
+  <!-- Features -->
+  <section class="py-12 bg-white px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="p-6 shadow rounded-lg border">
+        <h3 class="text-xl font-semibold text-yellow-600 mb-2">Inventory Management</h3>
+        <p class="text-gray-600">Track and manage your stock easily.</p>
+      </div>
+      <div class="p-6 shadow rounded-lg border">
+        <h3 class="text-xl font-semibold text-yellow-600 mb-2">Billing & Invoicing</h3>
+        <p class="text-gray-600">Automate billing and manage customer payments.</p>
+      </div>
+      <div class="p-6 shadow rounded-lg border">
+        <h3 class="text-xl font-semibold text-yellow-600 mb-2">Reports & Analytics</h3>
+        <p class="text-gray-600">Make decisions using real-time reports.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="text-center py-16 bg-yellow-100 px-4">
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">Ready to grow your business?</h2>
+    <p class="text-gray-700 mb-6">Join businesses that trust Lemon Software ERP.</p>
+    <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-8 rounded-full transition">
+      Get a Free Demo
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6 mt-auto">
+    <p class="text-sm">© {{ now|date:"Y" }} Lemon Software Solution — Smart ERP for Smart Businesses.</p>
+  </footer>
+
+</body>
+</html>

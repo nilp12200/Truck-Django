@@ -2,27 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Truck Transaction - Lemon Software</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <nav class="bg-blue-700 text-white p-4 shadow">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="text-xl font-bold">Lemon Software</div>
-      <ul class="hidden md:flex gap-6">
-        <a href="{% url 'home' %}" class="hover:text-yellow-400">Home</a>
-        <a href="{% url 'plant_master' %}" class="hover:text-yellow-400">Plant Master</a>
-        <a href="{% url 'truck_transaction' %}" class="hover:text-yellow-400">Truck Transaction</a>
-        <a href="{% url 'login' %}" class="hover:text-yellow-400">Logout</a>
-      </ul>
+  <nav class="bg-gray-900 text-white p-4 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <span class="text-xl font-bold">Lemon Software Gate Pass</span>
+      <button class="md:hidden" onclick="toggleMenu()" aria-label="Toggle menu">
+        <!-- Hamburger Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex justify-center space-x-8 mt-4">
+      <!-- Admin Dropdown -->
+      <div class="relative group">
+        <button tabindex="0" class="font-semibold group-hover:text-yellow-400 focus:outline-none">
+          Admin
+        </button>
+        <div
+          class="absolute left-0 mt-2 hidden group-hover:block group-focus-within:block bg-gray-800 text-sm p-2 rounded shadow z-50"
+        >
+          <a href="{% url 'plant_master' %}" class="block text-blue-300 hover:text-yellow-300 px-3 py-1 rounded">
+            Plant Master
+          </a>
+        </div>
+      </div>
+
+      <!-- Dispatcher Dropdown -->
+      <div class="relative group">
+        <button tabindex="0" class="font-semibold group-hover:text-yellow-400 focus:outline-none">
+          Dispatcher
+        </button>
+        <div
+          class="absolute left-0 mt-2 hidden group-hover:block group-focus-within:block bg-gray-800 text-sm p-2 rounded shadow z-50"
+        >
+          <a href="{% url 'truck_transaction' %}" class="block text-blue-300 hover:text-yellow-300 px-3 py-1 rounded">
+            Truck Transaction
+          </a>
+        </div>
+      </div>
+
+      <!-- Static Links -->
+      <a href="#" class="text-blue-300 hover:text-yellow-400 px-3 py-1 rounded">Gate Keeper</a>
+      <a href="#" class="text-blue-300 hover:text-yellow-400 px-3 py-1 rounded">Loader</a>
+      <a href="#" class="text-blue-300 hover:text-yellow-400 px-3 py-1 rounded">Reports</a>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden mt-4 px-4 space-y-3">
+      <div>
+        <span class="block font-semibold">Admin</span>
+        <a href="{% url 'plant_master' %}" class="block ml-4 text-blue-300 hover:text-yellow-400">
+          Plant Master
+        </a>
+      </div>
+      <div>
+        <span class="block font-semibold">Dispatcher</span>
+        <a href="{% url 'truck_transaction' %}" class="block ml-4 text-blue-300 hover:text-yellow-400">
+          Truck Transaction
+        </a>
+      </div>
+      <a href="#" class="block text-blue-300 hover:text-yellow-400">Gate Keeper</a>
+      <a href="#" class="block text-blue-300 hover:text-yellow-400">Loader</a>
+      <a href="#" class="block text-blue-300 hover:text-yellow-400">Reports</a>
     </div>
   </nav>
-
   <!-- Truck Transaction Form -->
-  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-8">
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-8 flex-grow">
     <h1 class="text-2xl font-bold text-center mb-6">Truck Transaction</h1>
 
     <form action="/submit-truck/" method="POST">
@@ -115,6 +176,11 @@
       </div>
     </form>
   </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6 mt-auto">
+    <p class="text-sm">© 2025 Lemon Software Solution — Smart ERP for Smart Businesses.</p>
+  </footer>
 
 </body>
 </html>

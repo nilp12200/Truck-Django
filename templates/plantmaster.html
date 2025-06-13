@@ -2,29 +2,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Plant Master | Lemon Software</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Plant Master | Lemon Software</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
 </head>
 <body class="bg-gradient-to-br from-gray-100 to-blue-100 min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <nav class="bg-gray-800 text-white p-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <span class="text-xl font-bold">Lemon Software</span>
-      <div class="space-x-4">
-        <a href="{% url 'home' %}" class="hover:text-yellow-400">Home</a>
-        <a href="{% url 'plant_master' %}" class="hover:text-yellow-400">Plant Master</a>
-        <a href="{% url 'truck_transaction' %}" class="hover:text-yellow-400">Truck Transaction</a>
-        <a href="{% url 'login' %}" class="hover:text-yellow-400">Logout</a>
+  <nav class="bg-gray-900 text-white p-4 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <span class="text-xl font-bold">Lemon Software Gate Pass</span>
+      <button class="md:hidden" onclick="toggleMenu()" aria-label="Toggle menu">
+        <!-- Hamburger Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex justify-center space-x-8 mt-4">
+      <!-- Admin Dropdown -->
+      <div class="relative group">
+        <button tabindex="0" class="font-semibold group-hover:text-yellow-400 focus:outline-none">
+          Admin
+        </button>
+        <div
+          class="absolute left-0 mt-2 hidden group-hover:block group-focus-within:block bg-gray-800 text-sm p-2 rounded shadow z-50"
+        >
+          <a href="{% url 'plant_master' %}" class="block text-blue-300 hover:text-yellow-300 px-3 py-1 rounded">
+            Plant Master
+          </a>
+        </div>
       </div>
+
+      <!-- Dispatcher Dropdown -->
+      <div class="relative group">
+        <button tabindex="0" class="font-semibold group-hover:text-yellow-400 focus:outline-none">
+          Dispatcher
+        </button>
+        <div
+          class="absolute left-0 mt-2 hidden group-hover:block group-focus-within:block bg-gray-800 text-sm p-2 rounded shadow z-50"
+        >
+          <a href="{% url 'truck_transaction' %}" class="block text-blue-300 hover:text-yellow-300 px-3 py-1 rounded">
+            Truck Transaction
+          </a>
+        </div>
+      </div>
+
+      <!-- Static Links -->
+      <a href="#" class="text-blue-300 hover:text-yellow-400 px-3 py-1 rounded">Gate Keeper</a>
+      <a href="#" class="text-blue-300 hover:text-yellow-400 px-3 py-1 rounded">Loader</a>
+      <a href="#" class="text-blue-300 hover:text-yellow-400 px-3 py-1 rounded">Reports</a>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden mt-4 px-4 space-y-3">
+      <div>
+        <span class="block font-semibold">Admin</span>
+        <a href="{% url 'plant_master' %}" class="block ml-4 text-blue-300 hover:text-yellow-400">
+          Plant Master
+        </a>
+      </div>
+      <div>
+        <span class="block font-semibold">Dispatcher</span>
+        <a href="{% url 'truck_transaction' %}" class="block ml-4 text-blue-300 hover:text-yellow-400">
+          Truck Transaction
+        </a>
+      </div>
+      <a href="#" class="block text-blue-300 hover:text-yellow-400">Gate Keeper</a>
+      <a href="#" class="block text-blue-300 hover:text-yellow-400">Loader</a>
+      <a href="#" class="block text-blue-300 hover:text-yellow-400">Reports</a>
     </div>
   </nav>
 
-  <!-- Form Container -->
-  <div class="flex-grow flex items-center justify-center p-4">
-    <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-xl mt-8">
-      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Plant Master</h2>
+  <!-- Form Section -->
+  <main class="flex-grow flex items-center justify-center px-4 py-8">
+    <div class="bg-white shadow-2xl rounded-2xl p-6 sm:p-10 w-full max-w-xl">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6">Plant Master</h2>
 
       {% if messages %}
         <ul class="mb-4">
@@ -38,33 +101,41 @@
         {% csrf_token %}
         <div>
           <label class="block text-sm font-medium text-gray-700">Plant Name</label>
-          <input type="text" name="plantName" class="mt-1 block w-full rounded border border-gray-300 p-2" required>
+          <input type="text" name="plantName" required
+                 class="mt-1 w-full rounded border border-gray-300 p-2 focus:ring focus:ring-blue-300">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Plant Address</label>
-          <textarea name="plantAddress" class="mt-1 block w-full rounded border border-gray-300 p-2" rows="2"></textarea>
+          <textarea name="plantAddress" rows="2"
+                    class="mt-1 w-full rounded border border-gray-300 p-2 focus:ring focus:ring-blue-300"></textarea>
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Contact Person</label>
-          <input type="text" name="contactPerson" class="mt-1 block w-full rounded border border-gray-300 p-2">
+          <input type="text" name="contactPerson"
+                 class="mt-1 w-full rounded border border-gray-300 p-2 focus:ring focus:ring-blue-300">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Mobile No</label>
-          <input type="tel" name="mobileNo" class="mt-1 block w-full rounded border border-gray-300 p-2">
+          <input type="tel" name="mobileNo"
+                 class="mt-1 w-full rounded border border-gray-300 p-2 focus:ring focus:ring-blue-300">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Remarks</label>
-          <textarea name="remarks" class="mt-1 block w-full rounded border border-gray-300 p-2" rows="2"></textarea>
+          <textarea name="remarks" rows="2"
+                    class="mt-1 w-full rounded border border-gray-300 p-2 focus:ring focus:ring-blue-300"></textarea>
         </div>
-        <div class="flex justify-end">
-          <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Save</button>
+        <div class="flex justify-end pt-2">
+          <button type="submit"
+                  class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+            Save
+          </button>
         </div>
       </form>
     </div>
-  </div>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-6 mt-auto">
+  <footer class="bg-gray-900 text-white text-center py-5 mt-auto">
     <p class="text-sm">© {{ now|date:"Y" }} Lemon Software Solution — Smart ERP for Smart Businesses.</p>
   </footer>
 
